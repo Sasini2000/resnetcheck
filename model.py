@@ -13,7 +13,7 @@ class ResNet(nn.Module):
             self.encoder.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
             self.encoder.fc = nn.Identity()
             self.fc = nn.Linear(2048, num_classes)
-        elif (name=='resnet50'):
+        else:
             self.encoder = torchvision.models.resnet50(zero_init_residual=True)
             self.encoder.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
             self.encoder.fc = nn.Identity()
@@ -21,5 +21,4 @@ class ResNet(nn.Module):
     def forward(self, x):
 
         return self.fc(self.encoder(x))
-
 
